@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link rel="icon" href="media/icon.png" type="image/png" sizes="32x32" />
+    <title>Hycal | Web Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Portofolio Hycal - Web Developer dari Banda Aceh. Menyediakan project front-end & back-end dengan desain modern dan responsif."
+    />
+    <meta
+      name="keywords"
+      content="Hycal, Web Developer, Portfolio, Front-End, Back-End, Banda Aceh"
+    />
+    <meta name="author" content="Hycal" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Hycal | Web Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Portofolio Hycal - Web Developer dari Banda Aceh."
+    />
+    <meta
+      property="og:image"
+      content="https://haikalanakbaik.github.io/media/profile.jpg"
+    />
+    <meta property="og:url" content="https://haikalanakbaik.github.io/" />
+    <style>
+      @layer utilities {
+        .text-glow {
+          text-shadow: 0 0 10px rgba(59, 130, 246, 0.8),
+            0 0 20px rgba(56, 189, 248, 0.7), 0 0 40px rgba(56, 189, 248, 0.6);
+        }
+        .text-shadow {
+          text-shadow: 0 0 10px rgba(252, 253, 255, 0.8),
+            0 0 20px rgba(229, 234, 236, 0.7), 0 0 40px rgba(186, 209, 219, 0.6);
+        }
+      }
+
+      /* efek typing */
+      .typing {
+        width: 11ch;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid white;
+        animation: typing 2s steps(22), blink 0.7s step-end infinite alternate;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 11ch;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      /* ===== Animasi Scroll Masuk ===== */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+      }
+      .fade-up.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .zoom-in {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.8s ease;
+      }
+      .zoom-in.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* ===== Responsif tambahan ===== */
+      @media (max-width: 1024px) {
+        #home {
+          flex-direction: column;
+          gap: 2rem;
+        }
+        nav {
+          position: fixed;
+          top: auto;
+          bottom: 0;
+          left: 0;
+          flex-direction: row !important;
+          width: 100%;
+          height: 60px;
+          border-radius: 0;
+          padding: 0.5rem;
+          justify-content: space-around;
+        }
+        .spotify-box {
+          width: 90%;
+        }
+        .code-bio {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        h1 {
+          font-size: 1.5rem !important;
+        }
+        .text-4xl {
+          font-size: 1.2rem !important;
+        }
+        .text-5xl {
+          font-size: 1.5rem !important;
+        }
+        .text-2xl {
+          font-size: 1rem !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-gradient-to-r from-gray-700 via-slate-600 to-blue-800">
+    <!-- navbar -->
+    <div>
+      <nav
+        class="fixed top-1/2 lg:-translate-y-1/2 w-16 bg-white/10 backdrop-blur-md text-white flex flex-col justify-center items-center lg:space-y-5 p-4 rounded-r-2xl shadow-lg z-10"
+      >
+        <a href="#home"
+          ><i
+            class="fa-solid fa-house text-2xl transition-transform duration-300 hover:scale-125"
+          ></i
+        ></a>
+        <a href="#about"
+          ><i
+            class="fa-solid fa-circle-user text-2xl transition-transform duration-300 hover:scale-125"
+          ></i
+        ></a>
+        <a href="#skills"
+          ><i
+            class="fa-solid fa-code text-2xl transition-transform duration-300 hover:scale-125"
+          ></i
+        ></a>
+        <a href="#project"
+          ><i
+            class="fa-solid fa-briefcase text-2xl transition-transform duration-300 hover:scale-125"
+          ></i
+        ></a>
+      </nav>
+    </div>
+    <!-- siap navbar -->
+    
+    <!-- Bot FAQ Button -->
+<a
+href="#"
+id="bot-faq"
+class="fixed bottom-18 lg:bottom-5 right-5 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl hover:bg-blue-700 transition-transform duration-300 hover:scale-110 z-10"
+>
+<i class="fa-solid fa-robot text-white text-2xl"></i>
+</a>
+
+<!-- Popup Chat -->
+<div
+id="chat-popup"
+class="fixed bottom-24 right-5 w-80 bg-white rounded-xl shadow-2xl hidden flex-col z-20"
+>
+<!-- Header -->
+<div class="bg-blue-600 text-white p-3 rounded-t-xl flex justify-between items-center">
+  <span><i class="fa-solid fa-user bg-white p-2 rounded-full text-blue-600 mr-2"></i>Mr. Paul De khall</span>
+  <button id="close-chat"><i class="fa-solid fa-close cursor-pointer"></i></button>
+</div>
+
+<!-- Chat Body -->
+<div id="chat-body" class="p-3 h-64 overflow-y-auto text-sm space-y-2">
+  <div class="bg-gray-200 p-2 rounded w-fit">
+    Halo 👋 Ada yang bisa saya bantu?
+  </div>
+</div>
+
+<!-- Input -->
+<div class="p-2 border-t flex gap-2">
+  <input
+    type="text"
+    id="chat-input"
+    placeholder="Ketik pesan..."
+    class="flex-1 border rounded px-2 py-1 text-sm focus:outline-none"
+  />
+  <button
+    id="send-chat"
+    class="bg-blue-600 text-white px-3 rounded"
+  >
+    Kirim
+  </button>
+</div>
+</div>
+    <!-- Siap Bot FAQ -->
+
+    <!-- beranda -->
+    <div
+      id="home"
+      class="flex items-center justify-center gap-10 flex-wrap mb-30"
+    >
+      <div
+        class="flex flex-col items-center justify-center h-screen font-thin text-white fade-up"
+      >
+        <p class="text-4xl typing">Hallo, it's me</p>
+        <h1
+          class="text-6xl font-bold bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text text-transparent text-glow"
+        >
+          Muhammad Qaikhal
+        </h1>
+        <h1 class="text-2xl lg:text-3xl font-semibold">
+          Jurusan Rekayasa Perangkat Lunak
+        </h1>
+        <h1
+          class="text-sm lg:text-3xl font-semibold mt-2 flex flex-wrap gap-2 justify-center"
+        >
+          <span
+            class="lg:text-2xl text-sm hover:bg-gradient-to-r from-blue-600 to-blue-400 hover:scale-105 p-1 rounded-md cursor-pointer transition-all duration-300 ease-in-out"
+          >
+            Web Developer
+          </span>
+          |
+          <span
+            class="lg:text-2xl text-sm hover:bg-gradient-to-r from-blue-600 to-blue-400 hover:scale-105 p-1 rounded-md cursor-pointer transition-all duration-300 ease-in-out"
+          >
+            Front-End & Back-End
+          </span>
+          |
+          <span
+            class="lg:text-2xl text-sm hover:bg-gradient-to-r from-blue-600 to-blue-400 hover:scale-105 p-1 rounded-md cursor-pointer transition-all duration-300 ease-in-out"
+          >
+            Creator
+          </span>
+        </h1>
+
+        <div class="flex space-x-4 mt-5">
+          <a
+            href="https://www.instagram.com/_hycal_177_/"
+            class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center bg-transparent hover:bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+          >
+            <i class="fa-brands fa-instagram text-white text-xl"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=100090138028486"
+            class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+          >
+            <i class="fa-brands fa-facebook-f text-white text-xl"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/@Qaikhal99"
+            class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center bg-transparent hover:bg-red-600 transition-transform duration-300 hover:scale-125 hover:border-none hover:.text-shadow"
+          >
+            <i class="fa-brands fa-youtube text-white text-xl"></i>
+          </a>
+        </div>
+        <div class="mt-8 flex items-center space-x-5">
+          <a
+            href="mailto:qaikhal99@gmail.com?subject=Halo%20dari%20website&body=Halo%20saya%20ingin%20tanya..."
+            class="shadow-lg/50 shadow-blue-400 bg-gradient-to-r from-blue-500 to-blue-700 text-white text-sm rounded-full py-3 px-5 font-bold border-2 border-transparent hover:border-blue-400 hover:text-blue-400 hover:bg-none transition-all duration-300"
+          >
+            CONTACT ME
+          </a>
+
+          <a
+            href="#"
+            class="shadow-lg/50 shadow-blue-400 text-blue-400 text-sm rounded-full py-3 px-5 font-bold border-2 border-blue-400 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white transition-all duration-300 hover:border-transparent"
+          >
+            DOWNLOAD CV
+          </a>
+        </div>
+      </div>
+
+      <!-- spotify box -->
+      <div
+        class="spotify-box rounded-2xl shadow-2xl shadow-slate-200 bg-gradient-to-b from-gray-500 to-zinc-600 animate-pulse fade-up"
+      >
+        <div class="flex gap-22 m-5 text-white">
+          <i class="fa-solid fa-angle-down text-2xl"></i>
+          <p class="font-mono text-xl font-bold">PROFILE</p>
+          <i class="fa-solid text-2xl fa-ellipsis-vertical"></i>
+        </div>
+        <div>
+          <img
+            src="media/profile.jpg"
+            alt="profile"
+            class="size-50 mx-auto my-10"
+          />
+          <h1 class="font-bold text-white text-xl px-5">Muhammad Qaikhal</h1>
+          <h1 class="text-white text-base px-5">Rekayasa Perangkat Lunak</h1>
+        </div>
+        <div class="text-white p-6 rounded-xl max-w-md mx-auto space-y-6">
+          <div class="w-full bg-slate-700 h-1 rounded-full">
+            <div class="bg-white h-1 w-1/3 flex">
+              <p class="text-sm py-2">00.21</p>
+              <p class="text-sm py-2 ml-53">02.31</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-around">
+            <i class="fa-regular fa-heart text-xl cursor-pointer"></i>
+            <i class="fa-solid fa-backward text-xl cursor-pointer"></i>
+            <i
+              class="fa-solid fa-play text-3xl bg-white text-black rounded-full py-4 px-5 cursor-pointer"
+            ></i>
+            <i class="fa-solid fa-forward text-xl cursor-pointer"></i>
+            <i class="fa-solid fa-minus text-xl cursor-pointer"></i>
+          </div>
+          <div class="flex justify-between items-center text-lg">
+            <i class="fa-solid fa-closed-captioning cursor-pointer"></i>
+            <i class="fa-solid fa-bars cursor-pointer"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- siap beranda -->
+
+    <!-- about -->
+    <div id="about" class="mb-50 fade-up">
+      <h1
+        class="text-3xl font-bold text-center text-white p-5 border-b-2 w-60 mx-auto mb-10"
+      >
+        ABOUT ME
+      </h1>
+      <div
+        class="flex flex-wrap justify-center items-start mx-auto gap-10 px-6"
+      >
+        <section
+          class="bg-gray-900 text-gray-100 rounded-xl p-4 shadow-2xl shadow-slate-200 font-mono w-full sm:w-96 animate-pulse code-bio"
+        >
+          <pre class="text-xs lg:text-sm">
+<code>
+<span class="text-green-400">const</span> <span class="text-blue-400">biodata</span> = &#123;
+  name: <span class="text-yellow-400">"Qaikhal"</span>,
+  fullName: <span class="text-yellow-400">"Muhammad Qaikhal"</span>,
+  status: <span class="text-yellow-400">"Pelajar"</span>,
+  location: <span class="text-yellow-400">"Banda Aceh, Indonesia"</span>,
+  about: <span class="text-yellow-400">
+    "Saya seorang pelajar di jurusan Rekayasa Perangkat Lunak dengan minat besar dalam pengembangan web dan teknologi."
+  </span>,
+
+  <span class="text-gray-500">// Kontak</span>
+  MediaSosial: &#123;
+    instagram: <span class="text-yellow-400">"<a href="https://instagram.com">@_hycal_177_</a>"</span>,
+    Tiktok: <span class="text-yellow-400">"<a href="">@FounderBoy_</a>"</span>,
+    Github: <span class="text-yellow-400">"<a href="">@haikalanakbaik</a>"</span>,
+  &#125;,
+&#125;;
+</code>
+</pre>
+        </section>
+
+        <div class="flex-1 min-w-[250px] max-w-xl fade-up lg:text-lg text-base">
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white">
+            <p class=" leading-relaxed text-center">
+              Halo! Nama saya Muhammad Qaikhal, seorang pelajar di jurusan
+              Rekayasa Perangkat Lunak. Saya memiliki minat yang besar dalam
+              dunia teknologi dan pengembangan perangkat lunak. Saya senang
+              belajar hal-hal baru dan selalu berusaha untuk meningkatkan
+              keterampilan saya di bidang ini. Selain itu, saya juga aktif dalam
+              berbagai proyek sekolah yang melibatkan pemrograman dan
+              pengembangan aplikasi. Saya percaya bahwa teknologi memiliki
+              potensi besar untuk mengubah dunia, dan saya ingin menjadi bagian
+              dari perubahan tersebut. Terima kasih telah mengunjungi profil
+              saya!
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-3">
+            <h1 class="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white">
+              📍 Banda Aceh, Indonesia
+            </h1>
+            <h1 class="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white">
+              💼 Student & Web Developer
+            </h1>
+            <h1 class="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white">
+              📅 Active Since 2023
+            </h1>
+            <h1 class="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white">
+              📞 +6289-5332-323-125
+            </h1>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-8 mt-5">
+            <div
+              class="bg-white/10 backdrop-blur-md rounded-2xl p-5 text-center"
+            >
+              <h1 class="text-white">Project Complete</h1>
+              <p class="text-5xl font-bold text-white">5+</p>
+            </div>
+            <div
+              class="bg-white/10 backdrop-blur-md rounded-2xl p-5 text-center"
+            >
+              <h1 class="text-white">Years Experience</h1>
+              <p class="text-5xl font-bold text-white">2+</p>
+            </div>
+            <div
+              class="bg-white/10 backdrop-blur-md rounded-2xl p-5 text-center"
+            >
+              <h1 class="text-white">Happy Clients</h1>
+              <p class="text-5xl font-bold text-white">1+</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- skills -->
+    <div id="skills" class="mb-50 fade-up">
+      <h1
+        class="text-3xl font-bold text-center text-white p-5 border-b-2 w-60 mx-auto mb-10 mt-20"
+      >
+        SKILLS
+      </h1>
+      <div
+        class="max-w-5xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      >
+        <div class="text-center">
+          <i class="fa-brands fa-html5 text-6xl text-orange-500 mb-4"></i>
+          <h2 class="text-xl font-semibold mb-5">HTML5</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-orange-600 to-orange-400 h-1 w-32 rounded-full mb-2"
+            ></div>
+          </div>
+          100%
+        </div>
+        <div class="text-center">
+          <i class="fa-brands fa-css3-alt text-6xl text-blue-500 mb-4"></i>
+          <h2 class="text-xl font-semibold mb-5">CSS3</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-blue-600 to-blue-400 h-1 w-32 rounded-full mb-2"
+            ></div>
+          </div>
+          100%
+        </div>
+        <div class="text-center">
+          <i class="fa-brands fa-js-square text-6xl text-yellow-400 mb-4"></i>
+          <h2 class="text-xl font-semibold mb-5">JavaScript</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-yellow-600 to-yellow-400 h-1 w-32 rounded-full mb-2"
+            ></div>
+          </div>
+          100%
+        </div>
+        <div class="text-center">
+          <i class="fa-brands fa-react text-6xl text-cyan-400 mb-4"></i>
+          <h2 class="text-xl font-semibold mb-5">React</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-sky-500 to-sky-400 h-1 w-24 rounded-full mb-2"
+            ></div>
+          </div>
+          80%
+        </div>
+        <div class="text-center">
+          <i class="fa-brands fa-node-js text-6xl text-green-500 mb-4"></i>
+          <h2 class="text-xl font-semibold mb-5">Node.js</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-green-600 to-green-400 h-1 w-24 rounded-full mb-2"
+            ></div>
+          </div>
+          80%
+        </div>
+        <div class="text-center">
+          <img
+            src="https://cdn.simpleicons.org/mysql/F29111"
+            alt="MySQL"
+            class="w-15 h-15 mx-auto mb-4"
+          />
+          <h2 class="text-xl font-semibold mb-5">MySQL</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-orange-400 to-orange-300 h-1 w-32 rounded-full mb-2"
+            ></div>
+          </div>
+          100%
+        </div>
+        <div class="text-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            class="w-15 h-15 text-gray-100 mx-auto mb-4"
+          >
+            <path
+              fill="#38B2AC"
+              d="M24 9.5c-6.1 0-9.9 3.1-11.4 9.3 2.3-3.1 4.9-4.3 8-3.6 1.7.4 2.9 1.6 4.2 2.9 2.1 2.1 4.5 4.5 9.6 4.5 6.1 0 9.9-3.1 11.4-9.3-2.3 3.1-4.9 4.3-8 3.6-1.7-.4-2.9-1.6-4.2-2.9-2.1-2.1-4.5-4.5-9.6-4.5zm-11.4 12.7c-6.1 0-9.9 3.1-11.4 9.3 2.3-3.1 4.9-4.3 8-3.6 1.7.4 2.9 1.6 4.2 2.9 2.1 2.1 4.5 4.5 9.6 4.5 6.1 0 9.9-3.1 11.4-9.3-2.3 3.1-4.9 4.3-8 3.6-1.7-.4-2.9-1.6-4.2-2.9-2.1-2.1-4.5-4.5-9.6-4.5z"
+            />
+          </svg>
+          <h2 class="text-xl font-semibold mb-5">Tailwind CSS</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-sky-600 to-sky-400 h-1 w-32 rounded-full mb-2"
+            ></div>
+          </div>
+          100%
+        </div>
+        <div class="text-center">
+          <img
+            src="https://cdn.simpleicons.org/mariadb/003545"
+            alt="MariaDB"
+            class="w-15 h-15 mx-auto mb-4"
+          />
+          <h2 class="text-xl font-semibold mb-5">MariaDB</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-slate-800 to-slate-700 h-1 w-32 rounded-full mb-2"
+            ></div>
+          </div>
+          100%
+        </div>
+        <div class="text-center">
+          <div class="flex items-end justify-center">
+            <p class="text-black text-2xl">Express</p>
+            <p class="bg-yellow-300 text-black font-bold pl-2 pt-3 mt-3 ml-1">
+              JS
+            </p>
+          </div>
+          <h2 class="text-xl font-semibold mb-5 mt-7">Express Js</h2>
+          <div class="mx-auto w-32 bg-white rounded-full">
+            <div
+              class="bg-gradient-to-r from-black to-yellow-300 h-1 w-24 rounded-full mb-2"
+            ></div>
+          </div>
+          80%
+        </div>
+      </div>
+    </div>
+
+    <!-- project -->
+    <div id="project" class="fade-up px-4 sm:px-6 lg:px-10">
+      <h1
+        class="text-3xl font-bold text-center text-white p-5 border-b-2 w-fit mx-auto mb-10 mt-20"
+      >
+        MY PROJECT
+      </h1>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto text-center"
+      >
+        <!-- Project 1 -->
+        <div
+          class="bg-white/10 backdrop-blur-md rounded-2xl text-white pb-7 shadow-2xl shadow-slate-200"
+        >
+          <img
+            src="media/webkelas.png"
+            alt="Project 1"
+            class="h-40 w-full object-cover rounded-t-2xl mb-5"
+          />
+          <h2 class="text-xl font-bold">Website Kelas</h2>
+          <p class="p-4 text-base mb-3">
+            Proyek ini bertujuan untuk membangun sebuah website yang berfungsi
+            sebagai platform perkenalan kelas online. Website ini dirancang
+            untuk memfasilitasi komunikasi antara guru dan siswa, serta
+            mendukung pengelolaan tugas dan jadwal kelas, memberikan wadah bagi
+            siswa untuk mempresentasikan projectnya.
+          </p>
+          <div class="flex justify-center gap-2">
+            <a
+              href="https://haikalanakbaik.github.io/XIRPL2/"
+              class="w-10 h-10 border border-white rounded-full flex justify-center items-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+            >
+              <i class="fa-solid fa-link"></i>
+            </a>
+            <a
+              href="https://github.com/haikalanakbaik/XIRPL2"
+              class="w-10 h-10 border border-white rounded-full flex justify-center items-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+          <!-- Project 2 -->
+          <div
+            class="bg-white/10 backdrop-blur-md rounded-2xl text-white pb-7 shadow-2xl shadow-slate-200"
+          >
+            <img
+              src="media/menabungbyhycal.png"
+              alt="Project 2"
+              class="h-40 w-full object-cover rounded-t-2xl mb-5"
+            />
+            <h2 class="text-xl font-bold">Menabung By Hycal</h2>
+            <p class="p-4 text-base mb-3">
+              Proyek ini bertujuan untuk membangun sebuah website yang berfungsi
+              sebagai platform pengelolaan tabungan secara online. Website ini
+              dirancang untuk membantu pengguna dalam mencatat, mengelola, dan
+              memantau aktivitas menabung dengan cara yang sederhana dan
+              efisien.
+            </p>
+            <div class="flex justify-center gap-2">
+              <a
+                href="https://haikalanakbaik.github.io/MenabungByHycal/"
+                class="w-10 h-10 border border-white rounded-full flex justify-center items-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+              >
+                <i class="fa-solid fa-link"></i>
+              </a>
+              <a
+                href="https://github.com/haikalanakbaik/MenabungByHycal"
+                class="w-10 h-10 border border-white rounded-full flex justify-center items-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="bg-white/10 backdrop-blur-md rounded-2xl text-white pb-7 shadow-2xl shadow-slate-200"
+          >
+            <img
+              src="media/websiteGabut.png"
+              alt="Project 3"
+              class="h-40 w-full object-cover rounded-t-2xl mb-5"
+            />
+            <h2 class="text-xl font-bold">Website Gabut Hycal</h2>
+            <p class="p-4 text-base mb-3">
+              Proyek ini bertujuan untuk membangun sebuah website sederhana yang
+              dirancang untuk menghibur pengguna dengan fitur tanya-jawab bebas.
+              Website ini memungkinkan pengguna untuk mengajukan pertanyaan apa
+              saja dan mendapatkan jawaban secara acak, lucu, atau bahkan tidak
+              relevan.
+            </p>
+            <div class="flex justify-center gap-2">
+              <a
+                href="https://haikalanakbaik.github.io/Website-Gabut/"
+                class="w-10 h-10 border border-white rounded-full flex justify-center items-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+              >
+                <i class="fa-solid fa-link"></i>
+              </a>
+              <a
+                href="https://github.com/haikalanakbaik/Website-Gabut"
+                class="w-10 h-10 border border-white rounded-full flex justify-center items-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <h1
+          class="text-center text-white text-2xl font-bold mb-5 pt-20 fade-up"
+        >
+          Let's Connect!
+        </h1>
+        <div class="flex justify-center space-x-6 fade-up">
+          <a
+            href="https://www.instagram.com/_hycal_177_/"
+            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center bg-transparent hover:bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+          >
+            <i class="fa-brands fa-instagram text-white text-xl"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=100090138028486"
+            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center bg-transparent hover:bg-blue-600 transition-transform duration-300 hover:scale-125 hover:border-none"
+          >
+            <i class="fa-brands fa-facebook-f text-white text-xl"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/@Qaikhal99"
+            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center bg-transparent hover:bg-red-600 transition-transform duration-300 hover:scale-125 hover:border-none hover:.text-shadow"
+          >
+            <i class="fa-brands fa-youtube text-white text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-10 text-center text-gray-200 text-sm mb-10">
+      &copy; <span>2025</span> Coding By Hycal. All rights reserved.
+    </footer>
+
+    <!-- Scroll animation script -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      });
+
+      document.querySelectorAll(".fade-up, .zoom-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const botBtn = document.getElementById("bot-faq");
+  const chatPopup = document.getElementById("chat-popup");
+  const closeChat = document.getElementById("close-chat");
+  const sendBtn = document.getElementById("send-chat");
+  const chatInput = document.getElementById("chat-input");
+  const chatBody = document.getElementById("chat-body");
+
+  // Toggle chat
+  botBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    chatPopup.classList.toggle("hidden");
+  });
+
+  closeChat.addEventListener("click", function () {
+    chatPopup.classList.add("hidden");
+  });
+
+  sendBtn.addEventListener("click", sendMessage);
+  chatInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // tampilkan pesan user
+    const userMsg = document.createElement("div");
+    userMsg.className = "bg-blue-600 text-white p-2 rounded w-fit ml-auto";
+    userMsg.textContent = message;
+    chatBody.appendChild(userMsg);
+
+    chatInput.value = "";
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // =============================
+    // 🔥 JIKA DIAWALI "wa,"
+    // =============================
+    if (message.toLowerCase().startsWith("wa,")) {
+      const phoneNumber = "62895332323125"; // nomor WA kamu
+      const cleanMessage = message.substring(3).trim(); // hapus "wa,"
+
+      const encodedMessage = encodeURIComponent(
+        "Halo Admin, saya mau tanya:\n" + cleanMessage
+      );
+
+      const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      window.open(waUrl, "_blank");
+
+      return; // STOP, tidak balas dummy
+    }
+
+    // =============================
+    // 🤖 BALASAN BOT DUMMY
+    // =============================
+    setTimeout(() => {
+      const botMsg = document.createElement("div");
+      botMsg.className = "bg-gray-200 p-2 rounded w-fit";
+      botMsg.textContent = getBotReply(message);
+      chatBody.appendChild(botMsg);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 700);
+  }
+
+  function getBotReply(text) {
+    text = text.toLowerCase();
+
+    if (text.includes("email"))
+      return "Email kami: qaikhal99@gmail.com 📧";
+
+    if (text.includes("alamat"))
+      return "Banda aceh, Indonesia 📍";
+
+    if (text.includes("harga"))
+      return "Untuk info harga, silakan ketik: wa, minta harga";
+
+    if (text.includes("halo") || text.includes("hai"))
+      return "Halo juga! Ada yang bisa saya bantu? 😊";
+
+    if (text.includes("siapa kamu"))
+      return "Saya adalah bot FAQ sederhana dari Qaikhal 🤖";
+
+    if (text.includes("terima kasih") || text.includes("makasih"))
+      return "Sama-sama! Senang bisa membantu 🙏";
+
+    if (text.includes("help") || text.includes("bantuan"))
+      return "Ketik 'wa,' diikuti pesan kamu untuk menghubungi admin.";
+
+    if (text.includes("project"))
+      return "Kamu bisa lihat project saya di bagian MY PROJECT di website ini 💻";
+
+    if (text.includes("skill") || text.includes("keahlian"))
+      return "Keahlian saya meliputi HTML, CSS, JavaScript, React, Node.js, dan database MySQL/MariaDB. 💻";
+
+    if (text.includes("kontak"))
+      return "Kamu bisa menghubungi saya lewat email ( ketik 'email' ) atau media sosial (ketik 'medsos' ) yang tertera di website ini. 📧";
+
+    if (text.includes("medsos") || text.includes("media sosial"))
+      return "Instagram: @_hycal_177_ 📸 \n Tiktok: @FounderBoy_ 🎵 \n Github: @haikalanakbaik 💻";
+
+    if (text.includes("bye") || text.includes("dadah"))
+      return "Sampai jumpa lagi! Semoga harimu menyenangkan 😊";
+
+    if (text.includes("apa kabar"))
+      return "Saya baik, terima kasih! Bagaimana dengan kamu? 😊";
+
+    if (text.includes("siapa nama kamu"))
+      return "Saya adalah bot FAQ dari Muhammad Qaikhal 🤖";
+
+    if (text.includes("umur kamu"))
+      return "Saya tidak memiliki umur seperti manusia, tapi saya selalu siap membantu! 🤖";
+
+    if (text.includes("buat apa kamu"))
+      return "Saya dibuat untuk membantu menjawab pertanyaan umum tentang Muhammad Qaikhal dan proyeknya. 🤖";
+
+    if (text.includes("dari mana kamu"))
+      return "Saya berasal dari kode dan data yang dibuat oleh Muhammad Qaikhal. 🤖";
+
+    if (text.includes("apa hobimu"))
+      return "Hobi saya adalah membantu orang dengan informasi yang mereka butuhkan! 🤖";
+
+    if (text.includes("siapa pembuatmu"))
+      return "Saya dibuat oleh Muhammad Qaikhal. 🤖";
+
+    if (text.includes("apa tujuanmu"))
+      return "Tujuan saya adalah memberikan informasi dan membantu pengguna dengan pertanyaan mereka tentang Muhammad Qaikhal. 🤖";
+
+    if (text.includes("bagaimana cara kerjamu"))
+      return "Saya bekerja dengan memproses input teks dan memberikan respons berdasarkan data yang telah diprogramkan oleh pembuat saya. 🤖";
+
+    return "Terima kasih 🙏 Jika ingin ke admin, ketik: wa, pesan kamu";
+  }
+});
+
+    </script>
+  </body>
+</html>
