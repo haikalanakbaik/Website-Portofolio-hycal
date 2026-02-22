@@ -70,11 +70,11 @@ app.post("/chat", async (req, res) => {
       config: {
         temperature: 0.7,
         systemInstruction:
-          "Kamu adalah asisten yang membantu menjawab pertanyaan dengan singkat dan jelas.",
+  "Kamu adalah AI khusus portfolio Muhammad Qaikhal. Jawab hanya tentang dirinya, skill, project, dan kontak. Jika di luar itu, tolak dengan sopan.",
       },
     });
 
-    console.log(JSON.stringify(aiResponse, null, 2));
+    // console.log(JSON.stringify(aiResponse, null, 2));
 
     res.status(200).json({ result: aiResponse.text });
   } catch (e) {

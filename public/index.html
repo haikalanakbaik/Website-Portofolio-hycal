@@ -694,146 +694,118 @@ class="fixed bottom-24 right-5 w-80 bg-white rounded-xl shadow-2xl hidden flex-c
           }
         });
       });
-
+    
       document.querySelectorAll(".fade-up, .zoom-in").forEach((el) => {
         observer.observe(el);
       });
-
-document.addEventListener("DOMContentLoaded", function () {
-  const botBtn = document.getElementById("bot-faq");
-  const chatPopup = document.getElementById("chat-popup");
-  const closeChat = document.getElementById("close-chat");
-  const sendBtn = document.getElementById("send-chat");
-  const chatInput = document.getElementById("chat-input");
-  const chatBody = document.getElementById("chat-body");
-
-  // Toggle chat
-  botBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    chatPopup.classList.toggle("hidden");
-  });
-
-  closeChat.addEventListener("click", function () {
-    chatPopup.classList.add("hidden");
-  });
-
-  sendBtn.addEventListener("click", sendMessage);
-  chatInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") sendMessage();
-  });
-
-  function sendMessage() {
-    const message = chatInput.value.trim();
-    if (!message) return;
-
-    // tampilkan pesan user
-    const userMsg = document.createElement("div");
-    userMsg.className = "bg-blue-600 text-white p-2 rounded w-fit ml-auto";
-    userMsg.textContent = message;
-    chatBody.appendChild(userMsg);
-
-    chatInput.value = "";
-    chatBody.scrollTop = chatBody.scrollHeight;
-
-    // =============================
-    // 🔥 JIKA DIAWALI "wa,"
-    // =============================
-    if (message.toLowerCase().startsWith("wa,")) {
-      const phoneNumber = "62895332323125"; // nomor WA kamu
-      const cleanMessage = message.substring(3).trim(); // hapus "wa,"
-
-      const encodedMessage = encodeURIComponent(
-        "Halo Admin, saya mau tanya:\n" + cleanMessage
-      );
-
-      const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-      window.open(waUrl, "_blank");
-
-      return; // STOP, tidak balas dummy
-    }
-
-    // =============================
-    // 🤖 BALASAN BOT DUMMY
-    // =============================
-    setTimeout(() => {
-      const botMsg = document.createElement("div");
-      botMsg.className = "bg-gray-200 p-2 rounded w-fit";
-      botMsg.textContent = getBotReply(message);
-      chatBody.appendChild(botMsg);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }, 700);
-  }
-
-  function getBotReply(text) {
-    text = text.toLowerCase();
-
-    if (text.includes("email"))
-      return "Email kami: qaikhal99@gmail.com 📧";
-
-    if (text.includes("alamat"))
-      return "Banda aceh, Indonesia 📍";
-
-    if (text.includes("harga"))
-      return "Untuk info harga, silakan ketik: wa, minta harga";
-
-    if (text.includes("halo") || text.includes("hai"))
-      return "Halo juga! Ada yang bisa saya bantu? 😊";
-
-    if (text.includes("siapa kamu"))
-      return "Saya adalah bot FAQ sederhana dari Qaikhal 🤖";
-
-    if (text.includes("terima kasih") || text.includes("makasih"))
-      return "Sama-sama! Senang bisa membantu 🙏";
-
-    if (text.includes("help") || text.includes("bantuan"))
-      return "Ketik 'wa,' diikuti pesan kamu untuk menghubungi admin.";
-
-    if (text.includes("project"))
-      return "Kamu bisa lihat project saya di bagian MY PROJECT di website ini 💻";
-
-    if (text.includes("skill") || text.includes("keahlian"))
-      return "Keahlian saya meliputi HTML, CSS, JavaScript, React, Node.js, dan database MySQL/MariaDB. 💻";
-
-    if (text.includes("kontak"))
-      return "Kamu bisa menghubungi saya lewat email ( ketik 'email' ) atau media sosial (ketik 'medsos' ) yang tertera di website ini. 📧";
-
-    if (text.includes("medsos") || text.includes("media sosial"))
-      return "Instagram: @_hycal_177_ 📸 \n Tiktok: @FounderBoy_ 🎵 \n Github: @haikalanakbaik 💻";
-
-    if (text.includes("bye") || text.includes("dadah"))
-      return "Sampai jumpa lagi! Semoga harimu menyenangkan 😊";
-
-    if (text.includes("apa kabar"))
-      return "Saya baik, terima kasih! Bagaimana dengan kamu? 😊";
-
-    if (text.includes("siapa nama kamu"))
-      return "Saya adalah bot FAQ dari Muhammad Qaikhal 🤖";
-
-    if (text.includes("umur kamu"))
-      return "Saya tidak memiliki umur seperti manusia, tapi saya selalu siap membantu! 🤖";
-
-    if (text.includes("buat apa kamu"))
-      return "Saya dibuat untuk membantu menjawab pertanyaan umum tentang Muhammad Qaikhal dan proyeknya. 🤖";
-
-    if (text.includes("dari mana kamu"))
-      return "Saya berasal dari kode dan data yang dibuat oleh Muhammad Qaikhal. 🤖";
-
-    if (text.includes("apa hobimu"))
-      return "Hobi saya adalah membantu orang dengan informasi yang mereka butuhkan! 🤖";
-
-    if (text.includes("siapa pembuatmu"))
-      return "Saya dibuat oleh Muhammad Qaikhal. 🤖";
-
-    if (text.includes("apa tujuanmu"))
-      return "Tujuan saya adalah memberikan informasi dan membantu pengguna dengan pertanyaan mereka tentang Muhammad Qaikhal. 🤖";
-
-    if (text.includes("bagaimana cara kerjamu"))
-      return "Saya bekerja dengan memproses input teks dan memberikan respons berdasarkan data yang telah diprogramkan oleh pembuat saya. 🤖";
-
-    return "Terima kasih 🙏 Jika ingin ke admin, ketik: wa, pesan kamu";
-  }
-});
-
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        const botBtn = document.getElementById("bot-faq");
+        const chatPopup = document.getElementById("chat-popup");
+        const closeChat = document.getElementById("close-chat");
+        const sendBtn = document.getElementById("send-chat");
+        const chatInput = document.getElementById("chat-input");
+        const chatBody = document.getElementById("chat-body");
+    
+        // 🔥 SIMPAN RIWAYAT CHAT
+        let conversation = [];
+    
+        // Toggle chat
+        botBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          chatPopup.classList.toggle("hidden");
+        });
+    
+        closeChat.addEventListener("click", function () {
+          chatPopup.classList.add("hidden");
+        });
+    
+        sendBtn.addEventListener("click", sendMessage);
+        chatInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") sendMessage();
+        });
+    
+        async function sendMessage() {
+          const message = chatInput.value.trim();
+          if (!message) return;
+    
+          // tampilkan pesan user
+          const userMsg = document.createElement("div");
+          userMsg.className =
+            "bg-blue-600 text-white p-2 rounded w-fit ml-auto";
+          userMsg.textContent = message;
+          chatBody.appendChild(userMsg);
+    
+          chatInput.value = "";
+          chatBody.scrollTop = chatBody.scrollHeight;
+    
+          // =============================
+          // 🔥 FITUR WA
+          // =============================
+          if (message.toLowerCase().startsWith("wa,")) {
+            const phoneNumber = "62895332323125";
+            const cleanMessage = message.substring(3).trim();
+            const encodedMessage = encodeURIComponent(
+              "Halo Admin, saya mau tanya:\n" + cleanMessage
+            );
+            window.open(
+              `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
+              "_blank"
+            );
+            return;
+          }
+    
+          // =============================
+          // 🤖 LOADING
+          // =============================
+          const loadingMsg = document.createElement("div");
+          loadingMsg.className = "bg-gray-200 p-2 rounded w-fit";
+          loadingMsg.textContent = "Mengetik...";
+          chatBody.appendChild(loadingMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+    
+          // simpan ke conversation
+          conversation.push({
+            role: "user",
+            text: message,
+          });
+    
+          try {
+            const response = await fetch("http://localhost:3000/chat", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ conversation }),
+            });
+    
+            const data = await response.json();
+    
+            loadingMsg.remove();
+    
+            const botMsg = document.createElement("div");
+            botMsg.className = "bg-gray-200 p-2 rounded w-fit";
+            botMsg.textContent = data.result;
+            chatBody.appendChild(botMsg);
+    
+            chatBody.scrollTop = chatBody.scrollHeight;
+    
+            // simpan balasan AI
+            conversation.push({
+              role: "model",
+              text: data.result,
+            });
+          } catch (error) {
+            loadingMsg.remove();
+    
+            const errorMsg = document.createElement("div");
+            errorMsg.className = "bg-red-200 p-2 rounded w-fit";
+            errorMsg.textContent =
+              "Terjadi kesalahan koneksi ke AI.";
+            chatBody.appendChild(errorMsg);
+          }
+        }
+      });
     </script>
   </body>
 </html>
