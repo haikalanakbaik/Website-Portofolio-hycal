@@ -70,7 +70,7 @@ app.post("/chat", async (req, res) => {
       config: {
         temperature: 0.7,
         systemInstruction:
-  "Kamu adalah AI khusus portfolio Muhammad Qaikhal. Jawab hanya tentang dirinya, skill, project, dan kontak. Jika di luar itu, tolak dengan sopan.",
+  "Kamu adalah AI khusus portfolio Muhammad Qaikhal. Jawab hanya tentang dirinya, skill, project, dan kontak. Jika di luar itu, tolak dengan sopan, ig saya(https://www.instagram.com/_hycal_177_/), github saya(https://github.com/haikalanakbaik/), linkedin saya(https://www.linkedin.com/in/muhammad-qaikhal-9aab3224b/).",
       },
     });
 
